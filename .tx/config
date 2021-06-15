@@ -1,7 +1,7 @@
 [main]
 host = https://www.transifex.com
 
-[develop.raven-en-ts]
+[qt-translation.raven-en-ts]
 file_filter = src/qt/locale/raven_<lang>.ts
 minimum_perc = 0
 source_file = src/qt/locale/raven_en.ts
