@@ -40,7 +40,7 @@
         <number>34</number>
        </property>
        <property name="sizeConstraint">
-        <enum>QLayout::SetMaximumSize</enum>
+        <enum>QLayout::SetMinAndMaxSize</enum>
        </property>
        <property name="leftMargin">
         <number>40</number>
@@ -69,6 +69,12 @@
              <horstretch>0</horstretch>
              <verstretch>0</verstretch>
             </sizepolicy>
+           </property>
+           <property name="minimumSize">
+            <size>
+             <width>450</width>
+             <height>243</height>
+            </size>
            </property>
            <property name="frameShape">
             <enum>QFrame::NoFrame</enum>
@@ -155,6 +161,9 @@
             </item>
             <item>
              <layout class="QGridLayout" name="gridLayout">
+              <property name="bottomMargin">
+               <number>10</number>
+              </property>
               <property name="spacing">
                <number>12</number>
               </property>
@@ -464,7 +473,7 @@
               <property name="sizeHint" stdset="0">
                <size>
                 <width>20</width>
-                <height>87</height>
+                <height>20</height>
                </size>
               </property>
              </spacer>
@@ -474,6 +483,12 @@
          </item>
          <item>
           <widget class="QFrame" name="assetFrame">
+           <property name="minimumSize">
+            <size>
+             <width>450</width>
+             <height>150</height>
+            </size>
+           </property>
            <property name="autoFillBackground">
             <bool>true</bool>
            </property>
@@ -656,6 +671,12 @@
              <horstretch>0</horstretch>
              <verstretch>0</verstretch>
             </sizepolicy>
+           </property>
+           <property name="sizeIncrement">
+            <size>
+             <width>0</width>
+             <height>300</height>
+            </size>
            </property>
            <property name="frameShape">
             <enum>QFrame::NoFrame</enum>

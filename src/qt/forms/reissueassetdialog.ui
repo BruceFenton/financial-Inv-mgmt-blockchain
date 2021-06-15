@@ -10,6 +10,12 @@
     <height>1051</height>
    </rect>
   </property>
+  <property name="minimumSize">
+   <size>
+    <width>600</width>
+    <height>550</height>
+   </size>
+  </property>
   <property name="windowTitle">
    <string notr="true">Transaction details</string>
   </property>
@@ -578,6 +584,12 @@
      </item>
      <item>
       <widget class="QFrame" name="frame">
+       <property name="minimumSize">
+        <size>
+         <width>400</width>
+         <height>180</height>
+        </size>
+       </property>
        <property name="frameShape">
         <enum>QFrame::StyledPanel</enum>
        </property>
@@ -587,6 +599,9 @@
        <layout class="QVBoxLayout" name="verticalLayout_2">
         <property name="spacing">
          <number>0</number>
+        </property>
+        <property name="sizeConstraint">
+         <enum>QLayout::SetDefaultConstraint</enum>
         </property>
         <property name="bottomMargin">
          <number>12</number>
@@ -1581,6 +1596,9 @@
      </item>
      <item>
       <layout class="QHBoxLayout" name="horizontalLayout_8">
+       <property name="sizeConstraint">
+        <enum>QLayout::SetFixedSize</enum>
+       </property>
        <item>
         <widget class="QPushButton" name="reissueAssetButton">
          <property name="minimumSize">
