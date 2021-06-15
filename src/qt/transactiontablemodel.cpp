@@ -397,6 +397,10 @@ QString TransactionTableModel::formatTxType(const TransactionRecord *wtx) const
         return tr("Assets Received");
     case TransactionRecord::TransferTo:
         return tr("Assets Sent");
+    case TransactionRecord::Swap:
+        return tr("Atomic Swap");
+    case TransactionRecord::SwapExecute:
+        return tr("Executed Atomic Swap");
     default:
         return QString();
     }
@@ -420,6 +424,9 @@ QVariant TransactionTableModel::txAddressDecoration(const TransactionRecord *wtx
         return QIcon(":/icons/tx_asset_input");
     case TransactionRecord::TransferTo:
         return QIcon(":/icons/tx_asset_output");
+    case TransactionRecord::Swap:
+    case TransactionRecord::SwapExecute:
+        return QIcon(":/icons/tx_atomic_swap");
     default:
         return QIcon(":/icons/tx_inout");
     }
@@ -447,6 +454,9 @@ QString TransactionTableModel::formatTxToAddress(const TransactionRecord *wtx, b
     case TransactionRecord::Generated:
         return lookupAddress(wtx->address, tooltip) + watchAddress;
     case TransactionRecord::SendToOther:
+        return QString::fromStdString(wtx->address) + watchAddress;
+    case TransactionRecord::Swap:
+    case TransactionRecord::SwapExecute:
         return QString::fromStdString(wtx->address) + watchAddress;
     case TransactionRecord::SendToSelf:
     default:

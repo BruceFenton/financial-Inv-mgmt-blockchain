@@ -81,7 +81,9 @@ public:
         Issue,
         Reissue,
         TransferTo,
-        TransferFrom
+        TransferFrom,
+        Swap,
+        SwapExecute
     };
 
     /** Number of confirmation recommended for accepting a transaction */
@@ -110,6 +112,7 @@ public:
      */
     static bool showTransaction(const CWalletTx &wtx);
     static QList<TransactionRecord> decomposeTransaction(const CWallet *wallet, const CWalletTx &wtx);
+    static bool isSwapTransaction(const CWallet *wallet, const CWalletTx &wtx, QList<TransactionRecord> &txRecords, const CAmount& nCredit, const CAmount& nDebit, const CAmount& nNet);
 
     /** @name Immutable transaction attributes
       @{*/

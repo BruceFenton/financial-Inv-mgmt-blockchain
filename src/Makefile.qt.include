@@ -353,6 +353,7 @@ RES_ICONS = \
   qt/res/icons/tx_mined.png \
   qt/res/icons/tx_asset_input.png \
   qt/res/icons/tx_asset_output.png \
+  qt/res/icons/tx_atomic_swap.png \
   qt/res/icons/warning.png \
   qt/res/icons/verify.png \
   qt/res/darkstyle/icon_close.png \
