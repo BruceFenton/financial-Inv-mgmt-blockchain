@@ -36,7 +36,7 @@ These are the dependencies currently used by Raven Core. You can find instructio
 | protobuf | [2.6.1](https://github.com/google/protobuf/releases) |  | No |  |  |
 | Python (tests) |  | [3.4](https://www.python.org/downloads) |  |  |  |
 | qrencode | [3.4.4](https://fukuchi.org/works/qrencode) |  | No |  |  |
-| Qt | [5.12.10](https://download.qt.io/official_releases/qt/) | 4.7+ | No |  |  |
+| Qt | [5.12.11](https://download.qt.io/official_releases/qt/) | 4.7+ | No |  |  |
 | XCB | 1.10 |  |  |  | [Yes](https://github.com/RavenProject/Ravencoin/blob/master/depends/packages/qt.mk#L94) (Linux only) |
 | xkbcommon | 0.8.4 |  |  |  | [Yes](https://github.com/RavenProject/Ravencoin/blob/master/depends/packages/qt.mk#L93) (Linux only) |
 | ZeroMQ | [4.1.5](https://github.com/zeromq/libzmq/releases) |  | No |  |  |
