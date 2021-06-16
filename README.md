@@ -3,6 +3,9 @@ Raven Core integration/staging tree
 
 https://ravencoin.org
 
+To see how to run Ravencoin, please read the respective files in [the doc folder](doc)
+
+
 What is Ravencoin?
 ----------------
 
