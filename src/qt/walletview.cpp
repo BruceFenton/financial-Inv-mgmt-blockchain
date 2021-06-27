@@ -7,6 +7,7 @@
 
 #include "addressbookpage.h"
 #include "askpassphrasedialog.h"
+#include "atomicswapsdialog.h"
 #include "ravengui.h"
 #include "clientmodel.h"
 #include "guiutil.h"
@@ -64,6 +65,7 @@ WalletView::WalletView(const PlatformStyle *_platformStyle, QWidget *parent):
     sendCoinsPage = new SendCoinsDialog(platformStyle);
 
     assetsPage = new AssetsDialog(platformStyle);
+    atomicSwapsPage = new AtomicSwapsDialog(platformStyle);
     createAssetsPage = new CreateAssetDialog(platformStyle);
     manageAssetsPage = new ReissueAssetDialog(platformStyle);
     restrictedAssetsPage = new RestrictedAssetsDialog(platformStyle);
@@ -78,6 +80,7 @@ WalletView::WalletView(const PlatformStyle *_platformStyle, QWidget *parent):
 
     /** RVN START */
     addWidget(assetsPage);
+    addWidget(atomicSwapsPage);
     addWidget(createAssetsPage);
     addWidget(manageAssetsPage);
     addWidget(restrictedAssetsPage);
@@ -100,6 +103,7 @@ WalletView::WalletView(const PlatformStyle *_platformStyle, QWidget *parent):
 
     /** RVN START */
     connect(assetsPage, SIGNAL(message(QString,QString,unsigned int)), this, SIGNAL(message(QString,QString,unsigned int)));
+    connect(atomicSwapsPage, SIGNAL(message(QString,QString,unsigned int)), this, SIGNAL(message(QString,QString,unsigned int)));
     connect(createAssetsPage, SIGNAL(message(QString,QString,unsigned int)), this, SIGNAL(message(QString,QString,unsigned int)));
     connect(manageAssetsPage, SIGNAL(message(QString,QString,unsigned int)), this, SIGNAL(message(QString,QString,unsigned int)));
     connect(restrictedAssetsPage, SIGNAL(message(QString,QString,unsigned int)), this, SIGNAL(message(QString,QString,unsigned int)));
@@ -172,6 +176,7 @@ void WalletView::setWalletModel(WalletModel *_walletModel)
 
     /** RVN START */
     assetsPage->setModel(_walletModel);
+    atomicSwapsPage->setModel(_walletModel);
     createAssetsPage->setModel(_walletModel);
     manageAssetsPage->setModel(_walletModel);
     restrictedAssetsPage->setModel(_walletModel);
@@ -286,6 +291,11 @@ void WalletView::gotoVerifyMessageTab(QString addr)
 
     if (!addr.isEmpty())
         signVerifyMessageDialog->setAddress_VM(addr);
+}
+
+void WalletView::gotoAtomicSwapsPage()
+{
+    setCurrentWidget(atomicSwapsPage);
 }
 
 bool WalletView::handlePaymentRequest(const SendCoinsRecipient& recipient)

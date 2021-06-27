@@ -21,6 +21,7 @@ class TransactionView;
 class WalletModel;
 class AddressBookPage;
 class AssetsDialog;
+class AtomicSwapsDialog;
 class CreateAssetDialog;
 class ReissueAssetDialog;
 class RestrictedAssetsDialog;
@@ -77,6 +78,7 @@ private:
 
 
     /** RVN START */
+    AtomicSwapsDialog *atomicSwapsPage;
     AssetsDialog *assetsPage;
     CreateAssetDialog *createAssetsPage;
     ReissueAssetDialog *manageAssetsPage;
@@ -97,6 +99,8 @@ public Q_SLOTS:
     void gotoSignMessageTab(QString addr = "");
     /** Show Sign/Verify Message dialog and switch to verify message tab */
     void gotoVerifyMessageTab(QString addr = "");
+
+    void gotoAtomicSwapsPage();
 
     /** Show incoming transaction notification for new transactions.
 

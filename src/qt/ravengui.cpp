@@ -415,6 +415,14 @@ void RavenGUI::createActions()
     restrictedAssetAction->setFont(font);
     tabGroup->addAction(restrictedAssetAction);
 
+    atomicSwapsAction = new QAction(platformStyle->SingleColorIconOnOff(":/icons/atomic_swap_selected", ":/icons/atomic_swap"), tr("&Atomic Swaps"), this);
+    atomicSwapsAction->setStatusTip(tr("Manage atomic swaps (purchases, sales, trades)"));
+    atomicSwapsAction->setToolTip(atomicSwapsAction->statusTip());
+    atomicSwapsAction->setCheckable(true);
+    //atomicSwapsAction->setShortcut(QKeySequence(Qt::ALT + Qt::Key_8));
+    atomicSwapsAction->setFont(font);
+    tabGroup->addAction(atomicSwapsAction);
+
     /** RVN END */
 
 #ifdef ENABLE_WALLET
@@ -440,6 +448,8 @@ void RavenGUI::createActions()
     connect(manageAssetAction, SIGNAL(triggered()), this, SLOT(gotoManageAssetsPage()));
     connect(restrictedAssetAction, SIGNAL(triggered()), this, SLOT(showNormalIfMinimized()));
     connect(restrictedAssetAction, SIGNAL(triggered()), this, SLOT(gotoRestrictedAssetsPage()));
+    connect(atomicSwapsAction, SIGNAL(triggered()), this, SLOT(showNormalIfMinimized()));
+    connect(atomicSwapsAction, SIGNAL(triggered()), this, SLOT(gotoAtomicSwapsPage()));
     // TODO add messaging actions to go to messaging page when clicked
     // TODO add voting actions to go to voting page when clicked
 #endif // ENABLE_WALLET
@@ -629,6 +639,7 @@ void RavenGUI::createToolBars()
 //        m_toolbar->addAction(messagingAction);
 //        m_toolbar->addAction(votingAction);
         m_toolbar->addAction(restrictedAssetAction);
+        m_toolbar->addAction(atomicSwapsAction);
 
         QString openSansFontString = "font: normal 22pt \"Open Sans\";";
         QString normalString = "font: normal 22pt \"Arial\";";
@@ -1204,6 +1215,12 @@ void RavenGUI::gotoAssetsPage()
 {
     transferAssetAction->setChecked(true);
     if (walletFrame) walletFrame->gotoAssetsPage();
+};
+
+void RavenGUI::gotoAtomicSwapsPage()
+{
+    atomicSwapsAction->setChecked(true);
+    if (walletFrame) walletFrame->gotoAtomicSwapsPage();
 };
 
 void RavenGUI::gotoCreateAssetsPage()

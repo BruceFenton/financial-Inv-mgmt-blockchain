@@ -114,6 +114,7 @@ QT_FORMS_UI = \
   qt/forms/signverifymessagedialog.ui \
   qt/forms/transactiondescdialog.ui \
   qt/forms/assetsdialog.ui \
+  qt/forms/atomicswapsdialog.ui \
   qt/forms/createassetdialog.ui \
   qt/forms/reissueassetdialog.ui \
   qt/forms/restrictedassetsdialog.ui \
@@ -178,6 +179,7 @@ QT_MOC_CPP = \
   qt/moc_walletmodel.cpp \
   qt/moc_walletview.cpp \
   qt/moc_assetsdialog.cpp \
+  qt/moc_atomicswapsdialog.cpp \
   qt/moc_createassetdialog.cpp \
   qt/moc_reissueassetdialog.cpp \
   qt/moc_restrictedassetsdialog.cpp \
@@ -216,6 +218,7 @@ RAVEN_QT_H = \
   qt/assetfilterproxy.h \
   qt/assetrecord.h \
   qt/assetsdialog.h \
+  qt/atomicswapsdialog.h \
   qt/createassetdialog.h \
   qt/bantablemodel.h \
   qt/ravenaddressvalidator.h \
@@ -292,6 +295,8 @@ RES_ICONS = \
   qt/res/icons/asset_manage_selected.png \
   qt/res/icons/asset_transfer.png \
   qt/res/icons/asset_transfer_selected.png \
+  qt/res/icons/atomic_swap.png \
+  qt/res/icons/atomic_swap_selected.png \
   qt/res/icons/ravencointext.png \
   qt/res/icons/raven.ico \
   qt/res/icons/raven_testnet.ico \
@@ -353,6 +358,7 @@ RES_ICONS = \
   qt/res/icons/tx_mined.png \
   qt/res/icons/tx_asset_input.png \
   qt/res/icons/tx_asset_output.png \
+  qt/res/icons/tx_atomic_swap.png \
   qt/res/icons/warning.png \
   qt/res/icons/verify.png \
   qt/res/darkstyle/icon_close.png \
@@ -426,6 +432,7 @@ RAVEN_QT_WALLET_CPP = \
   qt/assetcontroltreewidget.cpp \
   qt/assetfilterproxy.cpp \
   qt/assetsdialog.cpp \
+  qt/atomicswapsdialog.cpp \
   qt/createassetdialog.cpp \
   qt/coincontroldialog.cpp \
   qt/coincontroltreewidget.cpp \

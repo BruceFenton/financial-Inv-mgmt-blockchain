@@ -134,6 +134,7 @@ private:
     QAction *messagingAction = nullptr;
     QAction *votingAction = nullptr;
     QAction *restrictedAssetAction = nullptr;
+    QAction *atomicSwapsAction = nullptr;
     QWidget *headerWidget = nullptr;
     QLabel *labelCurrentMarket = nullptr;
     QLabel *labelCurrentPrice = nullptr;
@@ -272,6 +273,7 @@ private Q_SLOTS:
     /** RVN START */
     /** Switch to assets page */
     void gotoAssetsPage();
+    void gotoAtomicSwapsPage();
     void gotoCreateAssetsPage();
     void gotoManageAssetsPage();
     void gotoRestrictedAssetsPage();

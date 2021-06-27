@@ -43,6 +43,7 @@
         <file alias="tx_inout">res/icons/tx_inout.png</file>
         <file alias="tx_asset_input">res/icons/tx_asset_input.png</file>
         <file alias="tx_asset_output">res/icons/tx_asset_output.png</file>
+        <file alias="tx_atomic_swap">res/icons/tx_atomic_swap.png</file>
         <file alias="lock_closed">res/icons/lock_closed.png</file>
         <file alias="lock_open">res/icons/lock_open.png</file>
         <file alias="key">res/icons/key.png</file>
@@ -71,6 +72,8 @@
         <file alias="asset_manage_selected">res/icons/asset_manage_selected.png</file>
         <file alias="asset_transfer">res/icons/asset_transfer.png</file>
         <file alias="asset_transfer_selected">res/icons/asset_transfer_selected.png</file>
+        <file alias="atomic_swap">res/icons/atomic_swap.png</file>
+        <file alias="atomic_swap_selected">res/icons/atomic_swap_selected.png</file>
         <file alias="ravencointext">res/icons/ravencointext.png</file>
         <file alias="rvntext">res/icons/rvntext.png</file>
 	<file alias="restricted_asset">res/icons/restricted_asset.png</file>
