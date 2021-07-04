@@ -10,6 +10,7 @@
 #include <ui_mnemonicdialog1.h>
 #include <ui_mnemonicdialog2.h>
 #include <ui_mnemonicdialog3.h>
+#include <wallet/bip39.h>
 
 #if !TEST
   #include <qt/guiutil.h>
@@ -93,6 +94,13 @@ MnemonicDialog2::MnemonicDialog2(QWidget *parent) :
     ui(new Ui::MnemonicDialog2)
 {
     ui->setupUi(this);
+    
+    std::array<LanguageDetails, NUM_LANGUAGES_BIP39_SUPPORTED> languagesDetails = CMnemonic::GetLanguagesDetails();    
+   
+    for(int langNum = 0; langNum < NUM_LANGUAGES_BIP39_SUPPORTED; langNum++) {
+        MnemonicDialog2::ui->languageSeedWords->addItem(languagesDetails[langNum].label);
+    }
+    MnemonicDialog2::ui->languageSeedWords->installEventFilter(this);
 
 };
 
@@ -111,12 +119,16 @@ void MnemonicDialog2::on_acceptButton_clicked()
     std::string words = MnemonicDialog2::ui->seedwordsText->toPlainText().toStdString();
     std::string passphrase = MnemonicDialog2::ui->passphraseEdit->text().toStdString();
 
+    int languageSelected = MnemonicDialog2::ui->languageSeedWords->currentIndex();
+
 #if TEST
     std::string my_words;
-    std::string my_passphrase;
+    std::string my_passphrase;    
+    int my_languageSelected;
 #endif
     my_words = words;
     my_passphrase = passphrase;
+    int my_languageSelected = languageSelected;
 
 #if TEST
     // NOTE: default mnemonic passphrase is an empty string
@@ -125,7 +137,7 @@ void MnemonicDialog2::on_acceptButton_clicked()
     SecureString tmp(my_words.begin(), my_words.end());
 
     // NOTE: default mnemonic passphrase is an empty string
-    if (!CMnemonic::Check(tmp)) {
+    if (!CMnemonic::Check(tmp, my_languageSelected)) {
 #endif
 
         MnemonicDialog2::ui->lblHelp->setText(tr("Words are not valid, please generate new words and try again"));
@@ -141,20 +153,20 @@ void MnemonicDialog2::on_acceptButton_clicked()
 void MnemonicDialog2::on_generateButton_clicked()
 {
     MnemonicDialog2::ui->lblHelp->clear();
-    GenerateWords();
+    int languageSelected = MnemonicDialog2::ui->languageSeedWords->currentIndex();
+    GenerateWords(languageSelected);
 };
 
 
-void MnemonicDialog2::GenerateWords()
+void MnemonicDialog2::GenerateWords(int languageSelected)
 {
 #if TEST
     std::string str_words = "embark lawsuit town sunny forum churn amused gate ensuure smooth valley veteran";
 #else
-    SecureString words = CMnemonic::Generate(128);
+    SecureString words = CMnemonic::Generate(128, languageSelected);
     std::string str_words = std::string(words.begin(), words.end());
 #endif
     MnemonicDialog2::ui->seedwordsText->setPlainText(QString::fromStdString(str_words));
-
 }
 
 // =========
@@ -166,6 +178,13 @@ MnemonicDialog3::MnemonicDialog3(QWidget *parent) :
     ui->setupUi(this);
 
     MnemonicDialog3::ui->seedwordsEdit->installEventFilter(this);
+
+    std::array<LanguageDetails, NUM_LANGUAGES_BIP39_SUPPORTED> languagesDetails = CMnemonic::GetLanguagesDetails();    
+   
+    for(int langNum = 0; langNum < NUM_LANGUAGES_BIP39_SUPPORTED; langNum++) {
+        MnemonicDialog3::ui->languageSeedWords->addItem(languagesDetails[langNum].label);
+    }
+    MnemonicDialog3::ui->languageSeedWords->installEventFilter(this);
 };
 
 bool MnemonicDialog3::eventFilter(QObject *obj, QEvent *ev)
@@ -174,6 +193,7 @@ bool MnemonicDialog3::eventFilter(QObject *obj, QEvent *ev)
     {
         // Clear invalid flag on focus
         MnemonicDialog3::ui->lblHelp->clear();
+        MnemonicDialog3::ui->lblWarningJapanese->clear();
     }
     return QWidget::eventFilter(obj, ev);
 }
@@ -194,12 +214,16 @@ void MnemonicDialog3::on_acceptButton_clicked()
     std::string words = MnemonicDialog3::ui->seedwordsEdit->toPlainText().toStdString();
     std::string passphrase = MnemonicDialog3::ui->passphraseEdit->text().toStdString();
 
+    int languageSelected = MnemonicDialog3::ui->languageSeedWords->currentIndex();
+
 #if TEST
     std::string my_words;
     std::string my_passphrase;
+    int my_languageSelected;
 #endif
     my_words = words;
     my_passphrase = passphrase;
+    int my_languageSelected = languageSelected;
 
 #if TEST
     // NOTE: default mnemonic passphrase is an empty string
@@ -208,10 +232,17 @@ void MnemonicDialog3::on_acceptButton_clicked()
     SecureString tmp(my_words.begin(), my_words.end());
 
     // NOTE: default mnemonic passphrase is an empty string
-    if (!CMnemonic::Check(tmp)) {
+    if (!CMnemonic::Check(tmp, my_languageSelected)) {
 #endif
 
-        MnemonicDialog3::ui->lblHelp->setText(tr("Words are not valid, please check the words and try again"));
+        MnemonicDialog3::ui->lblHelp->setText(tr("Words are not valid, please check the words and the language, and try again."));
+        
+        if (CMnemonic::GetLanguagesDetails()[my_languageSelected].name == JAPANESE){
+            MnemonicDialog3::ui->lblWarningJapanese->setText(tr("In Japanese, please use standard space, ideographic japanese space is not supported."));
+        }else {
+            MnemonicDialog3::ui->lblWarningJapanese->clear();
+        }
+         
         my_words.clear();
         my_passphrase.clear();
         return;

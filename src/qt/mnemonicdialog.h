@@ -47,7 +47,7 @@ class MnemonicDialog2 : public QFrame
 public:
     explicit MnemonicDialog2(QWidget *parent);
     ~MnemonicDialog2();
-    void GenerateWords();
+    void GenerateWords(int languageSelected);
 
 public Q_SLOTS:
     void on_acceptButton_clicked();

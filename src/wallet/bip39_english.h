@@ -21,7 +21,7 @@
  * OTHER DEALINGS IN THE SOFTWARE.
  */
 
-const char * const wordlist[] = {
+const char * const wordlist_en[] = {
 "abandon",
 "ability",
 "able",
